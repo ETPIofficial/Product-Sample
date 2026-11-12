@@ -7,7 +7,7 @@ const imgs = p => p.images.map(esc);
 const bullets = p => `<ul>${p.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>`;
 const specTable = p => `<table class="spec">${Object.entries(p.specs || {}).map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>`;
 const gallery = p => `<div class="gal"><img class="big" src="${imgs(p)[0]}" alt=""><div class="th">${imgs(p).map(s => `<img src="${s}" alt="" onclick="this.closest('.gal').querySelector('.big').src=this.src">`).join('')}</div></div>`;
-const descImgs = p => `<div class="di">${imgs(p).map(s => `<img src="${s}" alt="">`).join('')}</div>`;
+const descImgs = p => `<div class="di">${(p.descImages || p.images).map(esc).map(s => `<img src="${s}" alt="">`).join('')}</div>`;
 const R = (p, s) => p.reviews ? s : '';
 const variants = p => p.variants.map(v => `<div class="var"><span>${esc(v.label)}</span><b>${yen(v.price)}円</b></div>`).join('');
 const selects = p => Object.entries(p.options).map(([k, v]) => `<label class="lb">${esc(k)}</label><select><option>選択</option>${v.map(o => `<option>${esc(o)}</option>`).join('')}</select>`).join('');
