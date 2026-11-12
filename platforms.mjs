@@ -65,7 +65,7 @@ ${variants(p)}</div></div></div>
   amazon: { label: 'Amazon', devices: ['desktop', 'mobile'], render: p => page(p, `
 .hd{background:#131921;color:#fff;display:flex;align-items:center;gap:14px;padding:10px 16px}.logo{font-weight:700;font-size:22px}.logo small{font-size:11px;color:#ddd}
 .sr{flex:1;background:#fff;color:#777;padding:10px;border-radius:4px;border-right:40px solid #febd69}.sub{background:#232f3e;color:#fff;padding:8px 16px;font-size:13px;display:flex;gap:16px}
-.bc{font-size:12px;color:#565959;padding:12px 0}.cols{display:grid;grid-template-columns:520px 1fr 280px;gap:24px}.gal{display:flex;flex-direction:row-reverse;gap:10px}.gal .big{flex:1;min-width:0}
+.bc{font-size:12px;color:#565959;padding:12px 0}.cols{display:grid;grid-template-columns:520px 1fr 280px;gap:24px}.gal{display:flex;flex-direction:row-reverse;gap:10px}.gal .big{flex:1;min-width:0;align-self:flex-start;height:auto;aspect-ratio:1;object-fit:contain}
 .gal .th{flex-direction:column}h1{font-size:22px;font-weight:400;line-height:1.4;margin:0}.lk{color:#007185;font-size:13px;margin:6px 0}.rt{color:#de7921}hr{border:0;border-top:1px solid #ddd;margin:12px 0}
 .pr{font-size:28px}.pr sup{font-size:14px}.off{color:#cc0c39;font-size:26px}.prime{color:#00a8e1;font-weight:700;font-size:13px}.buy{border:1px solid #ddd;border-radius:8px;padding:16px;align-self:start}
 .stock{color:#007600;font-size:18px;margin:10px 0}.b1,.b2{display:block;width:100%;border:0;padding:11px;border-radius:20px;font-size:14px;margin-top:10px}.b1{background:#ffd814}.b2{background:#ffa41c}
@@ -78,7 +78,7 @@ ${p.listPrice ? `<span class="off">-${Math.round((1 - price(p, 'amazon') / p.lis
 <b>この商品について</b>${bullets(p)}</div>
 <div class="buy"><div class="pr"><sup>￥</sup>${yen(price(p, 'amazon'))}</div><div style="font-size:13px;margin:8px 0">無料配送 <b>土曜日</b><br>お届け先: 東京</div><div class="stock">在庫あり</div>
 <select><option>数量: 1</option></select><button class="b1">カートに入れる</button><button class="b2">今すぐ買う</button></div></div>
-<h2 style="font-weight:400">商品の説明</h2>${descImgs(p)}<h2 style="font-weight:400">商品の情報</h2>${specTable(p)}</div>`) },
+<h2 style="font-weight:400">商品の情報</h2>${specTable(p)}</div>`) },
 
   tiktok: { label: 'TikTok Shop', devices: ['mobile'], render: p => page(p, `
 body{background:#000;color:#fff;max-width:480px;margin:0 auto;padding-bottom:76px}.top{display:flex;justify-content:space-between;padding:12px 14px;position:absolute;width:100%;max-width:480px;z-index:2;font-size:20px}
