@@ -102,13 +102,16 @@ s.onpointerup=s.onpointercancel=()=>{if(!d)return;d=0;s.style.scrollSnapType='';
 <div class="bar"><span>🏪<br>ストア</span><span>💬<br>相談</span><button class="c">カートに追加</button><button class="n">今すぐ購入</button></div>`) },
 
   official: { label: '公式ショップ', devices: ['desktop', 'mobile'], render: p => page(p, `
-body{color:#32373c}.ann{background:#ececec;text-align:center;padding:10px;font-size:13px}.hd{display:flex;align-items:center;justify-content:space-between;padding:14px 32px}
+body{color:#32373c}.ann{background:#ececec;display:flex;justify-content:space-between;align-items:center;padding:10px 24px;font-size:13px}.hd{display:flex;align-items:center;justify-content:space-between;padding:14px 32px}
+.hb,.m{display:none}.ic{display:flex;gap:14px;align-items:center}.hb i{display:block;width:26px;height:2px;background:#333;box-shadow:0 8px #333,0 -8px #333}
 .logo{font-weight:800;font-size:22px;letter-spacing:1px}.nv{display:flex;gap:22px;font-size:13px}.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1100px;margin:0 auto;padding:24px 16px}
 .gal .big{width:100%}h1{font-size:24px;line-height:1.5;font-weight:500;margin:0 0 14px}.pr{color:#0b4fbf;font-size:20px;font-weight:600}.mt{color:#888}.lb{display:block;margin:18px 0 6px;font-weight:500}
 .opt{background:#f0f0f0;border-radius:6px;padding:14px 16px;margin-bottom:8px}.opt b{color:#0b4fbf}.b1,.b2{display:block;width:100%;padding:15px;border-radius:4px;font-size:15px;margin-top:10px}
 .b1{background:#fff;border:1px solid #0b4fbf;color:#0b4fbf}.b2{background:#0b4fbf;border:1px solid #0b4fbf;color:#fff}.ft{background:#f5f5f5;text-align:center;padding:28px;font-size:12px;color:#666;margin-top:32px}
-@media(max-width:768px){.cols{grid-template-columns:1fr;gap:16px;padding:12px}.hd{padding:12px}.nv{display:none}h1{font-size:18px}}`, `
-<div class="ann">新規会員登録で500円分プレゼント！</div><div class="hd">${logo('airfric.png', 'height:34px;width:auto')}<div class="nv"><span>ホーム</span><span>商品一覧</span><span>衛生シート</span><span>synapusyuコレクション</span><span>サポート</span></div><span>🛒</span></div>
+@media(max-width:768px){.ann{padding:12px 16px;font-size:14px}.hd{display:grid;grid-template-columns:1fr auto 1fr;padding:10px 14px}.nv,.ic .pc{display:none}.hb,.m{display:flex}.ic{justify-self:end;gap:16px}
+.cols{grid-template-columns:minmax(0,1fr);gap:16px;padding:8px 10px}.cols>div{min-width:0}.gal .big{border-radius:14px}.gal .th{flex-wrap:nowrap;overflow-x:auto;gap:12px;margin-top:12px;padding-bottom:6px}.gal .th img{width:84px;height:84px;border-radius:8px;border:0;box-shadow:0 1px 4px rgba(0,0,0,.25);flex:0 0 auto}
+h1{font-size:22px;line-height:1.6}}`, `
+<div class="ann"><span>‹</span><span>新規会員登録で500円分プレゼント！</span><span>›</span></div><div class="hd"><span class="hb"><i></i></span>${logo('airfric.png', 'height:34px;width:auto')}<div class="nv"><span>ホーム</span><span>商品一覧</span><span>衛生シート</span><span>synapusyuコレクション</span><span>サポート</span></div><span class="ic"><span class="pc">🛒</span><svg class="m" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><path d="M15 15l6 6"/></svg><span class="m" style="align-items:center;gap:2px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><small>0</small></span><svg class="m" width="36" height="36" viewBox="0 0 34 34"><circle cx="17" cy="17" r="17" fill="#32373c"/><circle cx="17" cy="13" r="5" fill="#fff"/><path d="M7 28c1-6 6-8 10-8s9 2 10 8z" fill="#fff"/></svg></span></div>
 <div class="cols"><div>${gallery(p)}</div><div><h1>${esc(p.name.replace(/ SN-OM01$/, ''))}</h1>
 <div class="mt">価格</div><div class="pr">￥${yen(p.price)}${p.variants.length > 1 ? ' より' : ''}</div><div style="font-size:11px">消費税込み</div>
 <div class="lb" style="color:#888">内容量</div><div style="color:#888;font-size:13px">${esc(p.specs['内容量'])}</div>${selects(p)}
