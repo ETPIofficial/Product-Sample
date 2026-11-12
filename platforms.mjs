@@ -6,7 +6,7 @@ const price = (p, k) => p.prices?.[k] ?? p.price;
 const imgs = p => p.images.map(esc);
 const bullets = p => `<ul>${p.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>`;
 const specTable = p => `<table class="spec">${Object.entries(p.specs || {}).map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>`;
-const gallery = p => `<div class="gal"><img class="big" src="${imgs(p)[0]}" alt=""><div class="th">${imgs(p).map(s => `<img src="${s}" alt="" onclick="this.closest('.gal').querySelector('.big').src=this.src">`).join('')}</div></div>`;
+const gallery = (p, k) => { const L = (p.platformImages?.[k] || p.images).map(esc); return `<div class="gal"><img class="big" src="${L[0]}" alt=""><div class="th">${L.map(s => `<img src="${s}" alt="" onclick="this.closest('.gal').querySelector('.big').src=this.src">`).join('')}</div></div>`; };
 const descImgs = p => `<div class="di">${(p.descImages || p.images).map(esc).map(s => `<img src="${s}" alt="">`).join('')}</div>`;
 const R = (p, s) => p.reviews ? s : '';
 const variants = p => p.variants.map(v => `<div class="var"><span>${esc(v.label)}</span><b>${yen(v.price)}円</b></div>`).join('');
@@ -72,7 +72,7 @@ ${variants(p)}</div></div></div>
 @media(max-width:768px){.cols{grid-template-columns:1fr;gap:12px}.gal{flex-direction:column}.gal .th{flex-direction:row}.hd{padding:8px 12px}h1{font-size:17px}.sub{overflow:hidden;white-space:nowrap}}`, `
 <div class="hd"><span class="logo">amazon<small>.co.jp</small></span><div class="sr">Amazon.co.jp で検索</div><span class="pc">カート</span></div>
 <div class="sub"><span>すべて</span><span>ランキング</span><span>ベビー</span><span>ヘルス</span></div>
-<div class="wrap"><div class="bc">${p.category.map(esc).join(' › ')}</div><div class="cols"><div>${gallery(p)}</div><div>
+<div class="wrap"><div class="bc">${p.category.map(esc).join(' › ')}</div><div class="cols"><div>${gallery(p, 'amazon')}</div><div>
 <h1>${esc(p.name)}</h1><div class="lk">${esc(p.brand)} のストアを表示</div>${R(p, `<div class="rt">${p.rating} ${stars(p.rating)} <span style="color:#007185">(${p.reviews})</span></div>`)}<hr>
 ${p.listPrice ? `<span class="off">-${Math.round((1 - price(p, 'amazon') / p.listPrice) * 100)}%</span> ` : ''}<span class="pr"><sup>￥</sup>${yen(price(p, 'amazon'))}</span><div class="prime">✓prime 無料配送</div><hr>
 <b>この商品について</b>${bullets(p)}</div>
