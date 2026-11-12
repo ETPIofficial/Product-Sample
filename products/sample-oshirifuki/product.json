@@ -10,6 +10,7 @@
   "rating": 0,
   "reviews": 0,
   "images": ["img01.jpg", "img02.jpg", "img03.jpg", "img04.jpg", "img05.jpg", "img06.jpg", "img07.jpg", "img08.jpg", "img09.jpg", "img10.jpg", "img11.jpg", "img12.jpg"],
+  "platformImages": { "tiktok": ["img01.jpg", "img03.jpg", "img05.jpg", "img06.jpg", "img07.jpg", "img08.jpg", "img09.jpg", "img10.jpg", "img11.jpg"] },
   "tagline": "溶けた氷のようななめらか曲線で、毎日を使いやすく。",
   "bullets": [
     "8mmの厚みのアクリル蓋で、取っても浮かない",
