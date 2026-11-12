@@ -35,7 +35,8 @@ h1{font-size:18px;line-height:1.5;margin:0 0 10px}.pr{font-size:30px;font-weight
 .fx{display:flex;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;padding:8px;gap:8px;z-index:9}.fx button{flex:1;padding:13px;font-weight:700;border-radius:3px}body{padding-bottom:70px}}`, `
 <div class="hd">${logo('rakuten.webp', 'height:26px;width:auto')}<div class="sr"><span>キーワードから探す</span><i></i></div><div class="nav"><span>買い物かご</span><span>お知らせ</span><span>閲覧履歴</span><span>お気に入り</span><span>購入履歴</span></div></div>
 <div class="pc" style="max-width:1020px;margin:0 auto"><img src="../logos/rakuten-shop.webp" alt="" style="width:100%"></div>
-<div class="bar">${esc(p.shop)} ＞ カテゴリトップ</div><div class="sh mob">${logo('airfric.png', 'height:44px;width:auto;margin:0 auto')}</div>
+<div class="mob"><img src="../logos/rakuten-shop-sp.png" alt="" style="width:100%"></div>
+<div class="bar">${esc(p.shop)} ＞ カテゴリトップ</div>
 <div class="wrap">${descImgs(p)}<div class="cols"><div>${gallery(p)}</div><div>
 <h1>${esc(p.name)}</h1>${R(p, `<div class="rt">${stars(p.rating)} <span style="color:#222">${p.rating}（${p.reviews}件）</span></div>`)}<div style="color:#666;font-size:12px;margin:6px 0">商品番号：${esc(p.code)}</div>
 <div class="pr">${yen(p.price)}<small>円〜</small></div><div class="pt">${Math.floor(p.price * .01)}ポイント 1倍</div>${bullets(p)}<b>商品詳細を選択</b><div style="margin-top:8px">${variants(p)}</div></div>
