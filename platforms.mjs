@@ -34,11 +34,11 @@ h1{font-size:18px;line-height:1.5;margin:0 0 10px}.pr{font-size:30px;font-weight
 .fx{display:flex;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;padding:8px;gap:8px;z-index:9}.fx button{flex:1;padding:13px;font-weight:700;border-radius:3px}body{padding-bottom:70px}}`, `
 <div class="hd"><span class="logo">Rakuten</span><div class="sr"><span>キーワードから探す</span><i></i></div><div class="nav"><span>買い物かご</span><span>お知らせ</span><span>閲覧履歴</span><span>お気に入り</span><span>購入履歴</span></div></div>
 <div class="bar">${esc(p.shop)} ＞ カテゴリトップ</div><div class="sh">${esc(p.brand)}</div>
-<div class="wrap"><div class="cols"><div>${gallery(p)}</div><div>
+<div class="wrap">${descImgs(p)}<div class="cols"><div>${gallery(p)}</div><div>
 <h1>${esc(p.name)}</h1>${R(p, `<div class="rt">${stars(p.rating)} <span style="color:#222">${p.rating}（${p.reviews}件）</span></div>`)}<div style="color:#666;font-size:12px;margin:6px 0">商品番号：${esc(p.code)}</div>
 <div class="pr">${yen(p.price)}<small>円〜</small></div><div class="pt">${Math.floor(p.price * .01)}ポイント 1倍</div>${bullets(p)}<b>商品詳細を選択</b><div style="margin-top:8px">${variants(p)}</div></div>
 <div class="box pc"><div class="pr">${yen(p.price)}<small>円〜</small></div><button class="b1">かごに追加</button><button class="b2">購入手続きへ</button><div class="fav">☆ お気に入りに追加</div></div></div>
-<h2>商品説明</h2><p>${esc(p.description)}</p>${descImgs(p)}<h2>商品情報</h2>${specTable(p)}</div>
+<h2>商品説明</h2><p>${esc(p.description)}</p><h2>商品情報</h2>${specTable(p)}</div>
 <div class="fx"><button class="b1">かごに追加</button><button class="b2">購入手続きへ</button></div>`) },
 
   yahoo: { label: 'Yahoo!ショッピング', devices: ['desktop', 'mobile'], render: p => page(p, `
