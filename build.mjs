@@ -3,6 +3,7 @@ import { readdirSync, readFileSync, writeFileSync, cpSync, rmSync, existsSync } 
 import { platforms } from './platforms.mjs';
 
 rmSync('docs', { recursive: true, force: true });
+cpSync('logos', 'docs/logos', { recursive: true });
 const products = [];
 for (const slug of readdirSync('products', { withFileTypes: true }).filter(d => d.isDirectory()).map(d => d.name)) {
   const dir = `products/${slug}`;

@@ -9,6 +9,7 @@ const specTable = p => `<table class="spec">${Object.entries(p.specs || {}).map(
 const gallery = (p, k) => { const L = (p.platformImages?.[k] || p.images).map(esc); return `<div class="gal"><img class="big" src="${L[0]}" alt=""><div class="th">${L.map(s => `<img src="${s}" alt="" onclick="this.closest('.gal').querySelector('.big').src=this.src">`).join('')}</div></div>`; };
 const descImgs = p => `<div class="di">${(p.descImages || p.images).map(esc).map(s => `<img src="${s}" alt="">`).join('')}</div>`;
 const R = (p, s) => p.reviews ? s : '';
+const logo = (f, style) => `<img class="lg" src="../logos/${f}" alt="" style="${style}">`;
 const variants = p => p.variants.map(v => `<div class="var"><span>${esc(v.label)}</span><b>${yen(v.price)}円</b></div>`).join('');
 const selects = p => Object.entries(p.options).map(([k, v]) => `<label class="lb">${esc(k)}</label><select><option>選択</option>${v.map(o => `<option>${esc(o)}</option>`).join('')}</select>`).join('');
 
@@ -32,8 +33,8 @@ h1{font-size:18px;line-height:1.5;margin:0 0 10px}.pr{font-size:30px;font-weight
 .fx{display:none}h2{background:#f3f3f3;padding:10px 14px;font-size:16px;margin:28px 0 12px}
 @media(max-width:768px){.cols{grid-template-columns:1fr;gap:12px}.hd{padding:8px 12px}.nav,.sr{display:none}.logo{font-size:22px}.sh{font-size:22px;padding:12px}
 .fx{display:flex;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;padding:8px;gap:8px;z-index:9}.fx button{flex:1;padding:13px;font-weight:700;border-radius:3px}body{padding-bottom:70px}}`, `
-<div class="hd"><span class="logo">Rakuten</span><div class="sr"><span>キーワードから探す</span><i></i></div><div class="nav"><span>買い物かご</span><span>お知らせ</span><span>閲覧履歴</span><span>お気に入り</span><span>購入履歴</span></div></div>
-<div class="bar">${esc(p.shop)} ＞ カテゴリトップ</div><div class="sh">${esc(p.brand)}</div>
+<div class="hd">${logo('rakuten.webp', 'height:26px;width:auto')}<div class="sr"><span>キーワードから探す</span><i></i></div><div class="nav"><span>買い物かご</span><span>お知らせ</span><span>閲覧履歴</span><span>お気に入り</span><span>購入履歴</span></div></div>
+<div class="bar">${esc(p.shop)} ＞ カテゴリトップ</div><div class="sh">${logo('airfric.png', 'height:44px;width:auto;margin:0 auto')}</div>
 <div class="wrap">${descImgs(p)}<div class="cols"><div>${gallery(p)}</div><div>
 <h1>${esc(p.name)}</h1>${R(p, `<div class="rt">${stars(p.rating)} <span style="color:#222">${p.rating}（${p.reviews}件）</span></div>`)}<div style="color:#666;font-size:12px;margin:6px 0">商品番号：${esc(p.code)}</div>
 <div class="pr">${yen(p.price)}<small>円〜</small></div><div class="pt">${Math.floor(p.price * .01)}ポイント 1倍</div>${bullets(p)}<b>商品詳細を選択</b><div style="margin-top:8px">${variants(p)}</div></div>
@@ -50,7 +51,7 @@ body{background:#f2f2f2}.hd{background:#fff;display:flex;align-items:center;gap:
 .cpn{background:#f6f6f6;border-radius:8px;padding:14px;margin:12px 0}.cpn b{font-size:16px}.var{display:flex;justify-content:space-between;border:1px solid #ddd;padding:11px;border-radius:8px;margin:6px 0}
 .cart{display:block;width:100%;background:#f03;color:#fff;border:0;padding:15px;font-size:16px;font-weight:700;border-radius:28px;margin-top:14px}.gift{display:block;width:100%;background:#fff;color:#f03;border:1px solid #f03;padding:13px;font-size:15px;border-radius:28px;margin-top:8px}
 @media(max-width:768px){.cols,.main{grid-template-columns:1fr}.hd{padding:10px 12px}.sr{padding:9px 14px}.bc,.st{padding-left:12px;padding-right:12px}.cols{padding:0 8px}.card{padding:14px}}`, `
-<div class="hd"><span class="logo">YAHOO! <small>ショッピング</small></span><div class="sr">何をお探しですか？</div></div>
+<div class="hd">${logo('yahoo.png', 'height:32px;width:auto')}<div class="sr">何をお探しですか？</div></div>
 <div class="cp">【初回限定】最大半額アプリクーポン配布中！</div><div class="bc">${esc(p.shop)} ＞ ${esc(p.category[0])}</div>
 <div class="st"><b>${esc(p.shop)}</b>${R(p, `<span class="star">${stars(p.rating)}</span><b>${p.rating}</b>`)}</div>
 <div class="cols"><div><div class="card"><div class="main"><div>${gallery(p)}</div><div><h1>${esc(p.name)}</h1>${R(p, `<div style="color:#666;font-size:13px">★ ${p.reviews}件のレビュー</div>`)}
@@ -70,7 +71,7 @@ ${variants(p)}</div></div></div>
 .pr{font-size:28px}.pr sup{font-size:14px}.off{color:#cc0c39;font-size:26px}.prime{color:#00a8e1;font-weight:700;font-size:13px}.buy{border:1px solid #ddd;border-radius:8px;padding:16px;align-self:start}
 .stock{color:#007600;font-size:18px;margin:10px 0}.b1,.b2{display:block;width:100%;border:0;padding:11px;border-radius:20px;font-size:14px;margin-top:10px}.b1{background:#ffd814}.b2{background:#ffa41c}
 @media(max-width:768px){.cols{grid-template-columns:1fr;gap:12px}.gal{flex-direction:column}.gal .th{flex-direction:row}.hd{padding:8px 12px}h1{font-size:17px}.sub{overflow:hidden;white-space:nowrap}}`, `
-<div class="hd"><span class="logo">amazon<small>.co.jp</small></span><div class="sr">Amazon.co.jp で検索</div><span class="pc">カート</span></div>
+<div class="hd">${logo('amazon.png', 'width:120px;height:36px;object-fit:cover;filter:invert(1) hue-rotate(180deg)')}<div class="sr">Amazon.co.jp で検索</div><span class="pc">カート</span></div>
 <div class="sub"><span>すべて</span><span>ランキング</span><span>ベビー</span><span>ヘルス</span></div>
 <div class="wrap"><div class="bc">${p.category.map(esc).join(' › ')}</div><div class="cols"><div>${gallery(p, 'amazon')}</div><div>
 <h1>${esc(p.name)}</h1><div class="lk">${esc(p.brand)} のストアを表示</div>${R(p, `<div class="rt">${p.rating} ${stars(p.rating)} <span style="color:#007185">(${p.reviews})</span></div>`)}<hr>
@@ -81,14 +82,14 @@ ${p.listPrice ? `<span class="off">-${Math.round((1 - price(p, 'amazon') / p.lis
 <h2 style="font-weight:400">商品の情報</h2>${specTable(p)}</div>`) },
 
   tiktok: { label: 'TikTok Shop', devices: ['mobile'], render: p => page(p, `
-body{background:#000;color:#fff;max-width:480px;margin:0 auto;padding-bottom:76px}.top{display:flex;justify-content:space-between;padding:12px 14px;position:absolute;width:100%;max-width:480px;z-index:2;font-size:20px}
+body{background:#000;color:#fff;max-width:480px;margin:0 auto;padding-bottom:76px}.top{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:20px}
 .sl{cursor:grab;user-select:none}.sl img{-webkit-user-drag:none}.sl{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:#111}.sl::-webkit-scrollbar{display:none}.sl img{flex:0 0 100%;width:100%;aspect-ratio:1;object-fit:cover;scroll-snap-align:center}
 .ct{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;padding:3px 9px;border-radius:12px}.pad{padding:14px}.pr{color:#fe2c55;font-size:26px;font-weight:700}.pr small{font-size:14px}.tag{background:#fe2c55;border-radius:3px;font-size:11px;padding:2px 6px;color:#fff}
 h1{font-size:15px;line-height:1.5;margin:8px 0}.mt{color:#aaa;font-size:12px}.sel{background:#161616;border-radius:8px;padding:12px;margin:12px 0;display:flex;justify-content:space-between}
 .bar{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;background:#111;padding:10px 14px;display:flex;gap:10px;align-items:center}.bar span{font-size:12px;text-align:center;width:44px;color:#ccc}
 .bar button{flex:1;border:0;padding:14px;border-radius:6px;font-size:15px;font-weight:700}.c{background:#333;color:#fff}.n{background:#fe2c55;color:#fff}
 .spec th{background:#1a1a1a;color:#ddd;border-color:#333}.spec td{border-color:#333}.var{display:flex;justify-content:space-between;border:1px solid #333;padding:10px;border-radius:6px;margin-bottom:6px}`, `
-<div class="top"><span>‹</span><span>⋯</span></div><div class="sw" style="position:relative"><div class="sl" onscroll="this.nextElementSibling.textContent=(Math.round(this.scrollLeft/this.clientWidth)+1)+'/${(p.platformImages?.tiktok || p.images).length}'">${(p.platformImages?.tiktok || p.images).map(s => `<img src="${esc(s)}" alt="">`).join('')}</div><span class="ct">1/${(p.platformImages?.tiktok || p.images).length}</span></div><div class="pad">
+<div class="top"><span>‹</span>${logo('tiktok.png', 'width:160px;height:36px;object-fit:cover;filter:invert(1) hue-rotate(180deg)')}<span>⋯</span></div><div class="sw" style="position:relative"><div class="sl" onscroll="this.nextElementSibling.textContent=(Math.round(this.scrollLeft/this.clientWidth)+1)+'/${(p.platformImages?.tiktok || p.images).length}'">${(p.platformImages?.tiktok || p.images).map(s => `<img src="${esc(s)}" alt="">`).join('')}</div><span class="ct">1/${(p.platformImages?.tiktok || p.images).length}</span></div><div class="pad">
 <div class="pr"><small>¥</small>${yen(p.price)}<small>〜</small> <span class="tag">送料無料</span></div><h1>${esc(p.name)}</h1>
 <div class="mt">${R(p, `${stars(p.rating)} ${p.rating} · ${p.reviews}件のレビュー · `)}${esc(p.shop)}</div>
 <div class="sel"><span>サイズ・パック数を選択</span><span>›</span></div>${variants(p)}${bullets(p)}<h3>商品詳細</h3>${specTable(p)}<p style="color:#ccc">${esc(p.description)}</p></div>
@@ -105,7 +106,7 @@ body{color:#32373c}.ann{background:#ececec;text-align:center;padding:10px;font-s
 .opt{background:#f0f0f0;border-radius:6px;padding:14px 16px;margin-bottom:8px}.opt b{color:#0b4fbf}.b1,.b2{display:block;width:100%;padding:15px;border-radius:4px;font-size:15px;margin-top:10px}
 .b1{background:#fff;border:1px solid #0b4fbf;color:#0b4fbf}.b2{background:#0b4fbf;border:1px solid #0b4fbf;color:#fff}.ft{background:#f5f5f5;text-align:center;padding:28px;font-size:12px;color:#666;margin-top:32px}
 @media(max-width:768px){.cols{grid-template-columns:1fr;gap:16px;padding:12px}.hd{padding:12px}.nv{display:none}h1{font-size:18px}}`, `
-<div class="ann">新規会員登録で500円分プレゼント！</div><div class="hd"><span class="logo">${esc(p.brand)}</span><div class="nv"><span>ホーム</span><span>商品一覧</span><span>衛生シート</span><span>synapusyuコレクション</span><span>サポート</span></div><span>🛒</span></div>
+<div class="ann">新規会員登録で500円分プレゼント！</div><div class="hd">${logo('airfric.png', 'height:34px;width:auto')}<div class="nv"><span>ホーム</span><span>商品一覧</span><span>衛生シート</span><span>synapusyuコレクション</span><span>サポート</span></div><span>🛒</span></div>
 <div class="cols"><div>${gallery(p)}</div><div><h1>${esc(p.name.replace(/ SN-OM01$/, ''))}</h1>
 <div class="mt">価格</div><div class="pr">￥${yen(p.price)}${p.variants.length > 1 ? ' より' : ''}</div><div style="font-size:11px">消費税込み</div>
 <div class="lb" style="color:#888">内容量</div><div style="color:#888;font-size:13px">${esc(p.specs['内容量'])}</div>${selects(p)}
