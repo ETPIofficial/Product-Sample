@@ -38,7 +38,7 @@ h1{font-size:18px;line-height:1.5;margin:0 0 10px}.pr{font-size:30px;font-weight
 <h1>${esc(p.name)}</h1>${R(p, `<div class="rt">${stars(p.rating)} <span style="color:#222">${p.rating}（${p.reviews}件）</span></div>`)}<div style="color:#666;font-size:12px;margin:6px 0">商品番号：${esc(p.code)}</div>
 <div class="pr">${yen(p.price)}<small>円〜</small></div><div class="pt">${Math.floor(p.price * .01)}ポイント 1倍</div>${bullets(p)}<b>商品詳細を選択</b><div style="margin-top:8px">${variants(p)}</div></div>
 <div class="box pc"><div class="pr">${yen(p.price)}<small>円〜</small></div><button class="b1">かごに追加</button><button class="b2">購入手続きへ</button><div class="fav">☆ お気に入りに追加</div></div></div>
-<h2>商品情報</h2>${specTable(p)}<h2>商品説明</h2><p>${esc(p.description)}</p>${descImgs(p)}</div>
+<h2>商品説明</h2><p>${esc(p.description)}</p>${descImgs(p)}<h2>商品情報</h2>${specTable(p)}</div>
 <div class="fx"><button class="b1">かごに追加</button><button class="b2">購入手続きへ</button></div>`) },
 
   yahoo: { label: 'Yahoo!ショッピング', devices: ['desktop', 'mobile'], render: p => page(p, `
