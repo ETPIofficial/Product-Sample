@@ -60,8 +60,8 @@ body{background:#f2f2f2}.hd{background:#fff;display:flex;align-items:center;gap:
 <div style="margin-top:12px;font-weight:700">価格</div><div class="pr">${yen(price(p, 'yahoo'))}<small>円</small> <small style="color:#555;font-weight:400">送料無料（東京都）</small></div>
 <div class="cpn"><div style="font-size:12px">お買い物が初めての方へ アプリ限定</div><b>50%OFFクーポン</b></div><b>バリエーション</b>
 ${variants(p)}</div></div></div>
-<div class="card" style="margin-top:16px">${descImgs(p)}</div>
-<div class="card" style="margin-top:16px"><b>商品情報</b>${specTable(p)}</div></div>
+<div class="card" style="margin-top:16px"><b>商品情報</b>${specTable(p)}</div>
+<div class="card" style="margin-top:16px">${descImgs(p)}</div></div>
 <div class="card pc" style="align-self:start"><div style="font-weight:700">価格</div><div class="pr">${yen(price(p, 'yahoo'))}<small>円</small></div><div style="font-size:13px;margin:8px 0">送料無料（東京都）<br>4%獲得（${Math.floor(price(p, 'yahoo') * .036)}pt）</div><button class="cart">カートに入れる</button><button class="gift">ギフトで贈る</button></div></div>
 <div class="mob" style="position:sticky;bottom:0;background:#fff;padding:10px"><button class="cart" style="margin:0">カートに入れる</button></div>`) },
 
