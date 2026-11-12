@@ -107,5 +107,5 @@ body{color:#32373c}.ann{background:#ececec;text-align:center;padding:10px;font-s
 <div class="lb" style="color:#888">内容量</div><div style="color:#888;font-size:13px">${esc(p.specs['内容量'])}</div>${selects(p)}
 <label class="lb">料金オプション</label><div class="opt"><b>1回限りの購入</b><br><b>￥${yen(p.price)}</b></div>${(p.subscription || []).map(s => `<div class="opt"><b>${esc(s.label)}</b> ${esc(s.off)}<br><b>￥${yen(s.price)}</b></div>`).join('')}
 <button class="b1">カートに追加する</button><button class="b2">${p.subscription ? '定期購入する' : '今すぐ購入'}</button>
-<h3 style="margin-top:28px">商品概要</h3>${specTable(p)}</div></div>${descImgs(p)}<div class="ft">2026 © ${esc(p.brand)}</div>`) },
+<h3 style="margin-top:28px">商品概要</h3>${specTable(p)}</div></div><div class="ft">2026 © ${esc(p.brand)}</div>`) },
 };
