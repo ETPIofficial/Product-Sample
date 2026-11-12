@@ -82,7 +82,7 @@ ${p.listPrice ? `<span class="off">-${Math.round((1 - price(p, 'amazon') / p.lis
 
   tiktok: { label: 'TikTok Shop', devices: ['mobile'], render: p => page(p, `
 body{background:#000;color:#fff;max-width:480px;margin:0 auto;padding-bottom:76px}.top{display:flex;justify-content:space-between;padding:12px 14px;position:absolute;width:100%;max-width:480px;z-index:2;font-size:20px}
-.sl{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:#111}.sl::-webkit-scrollbar{display:none}.sl img{flex:0 0 100%;width:100%;aspect-ratio:1;object-fit:cover;scroll-snap-align:center}
+.sl{cursor:grab;user-select:none}.sl img{-webkit-user-drag:none}.sl{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:#111}.sl::-webkit-scrollbar{display:none}.sl img{flex:0 0 100%;width:100%;aspect-ratio:1;object-fit:cover;scroll-snap-align:center}
 .ct{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;padding:3px 9px;border-radius:12px}.pad{padding:14px}.pr{color:#fe2c55;font-size:26px;font-weight:700}.pr small{font-size:14px}.tag{background:#fe2c55;border-radius:3px;font-size:11px;padding:2px 6px;color:#fff}
 h1{font-size:15px;line-height:1.5;margin:8px 0}.mt{color:#aaa;font-size:12px}.sel{background:#161616;border-radius:8px;padding:12px;margin:12px 0;display:flex;justify-content:space-between}
 .bar{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;background:#111;padding:10px 14px;display:flex;gap:10px;align-items:center}.bar span{font-size:12px;text-align:center;width:44px;color:#ccc}
@@ -92,6 +92,10 @@ h1{font-size:15px;line-height:1.5;margin:8px 0}.mt{color:#aaa;font-size:12px}.se
 <div class="pr"><small>¥</small>${yen(p.price)}<small>〜</small> <span class="tag">送料無料</span></div><h1>${esc(p.name)}</h1>
 <div class="mt">${R(p, `${stars(p.rating)} ${p.rating} · ${p.reviews}件のレビュー · `)}${esc(p.shop)}</div>
 <div class="sel"><span>サイズ・パック数を選択</span><span>›</span></div>${variants(p)}${bullets(p)}<h3>商品詳細</h3>${specTable(p)}<p style="color:#ccc">${esc(p.description)}</p></div>
+<script>const s=document.querySelector('.sl');let d,x,l;
+s.onpointerdown=e=>{if(e.pointerType!='mouse')return;d=1;x=e.clientX;l=s.scrollLeft;s.style.scrollSnapType='none';try{s.setPointerCapture(e.pointerId)}catch{}};
+s.onpointermove=e=>{if(d)s.scrollLeft=l-(e.clientX-x)};
+s.onpointerup=s.onpointercancel=()=>{if(!d)return;d=0;s.style.scrollSnapType='';const w=s.clientWidth;s.scrollTo({left:Math.round(s.scrollLeft/w)*w,behavior:'smooth'})};</script>
 <div class="bar"><span>🏪<br>ストア</span><span>💬<br>相談</span><button class="c">カートに追加</button><button class="n">今すぐ購入</button></div>`) },
 
   official: { label: '公式ショップ', devices: ['desktop', 'mobile'], render: p => page(p, `
