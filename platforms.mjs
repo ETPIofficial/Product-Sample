@@ -103,7 +103,7 @@ s.onpointerup=s.onpointercancel=()=>{if(!d)return;d=0;s.style.scrollSnapType='';
 
   official: { label: '公式ショップ', devices: ['desktop', 'mobile'], render: p => page(p, `
 body{color:#32373c}.ann{background:#ececec;display:flex;justify-content:space-between;align-items:center;padding:10px 24px;font-size:13px}.hd{display:flex;align-items:center;justify-content:space-between;padding:14px 32px}.logo{font-weight:800;font-size:22px;letter-spacing:1px}.nv{display:flex;gap:22px;font-size:13px}.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1100px;margin:0 auto;padding:24px 16px}
-.gal .big{width:100%}h1{font-size:24px;line-height:1.5;font-weight:500;margin:0 0 14px}.pr{color:#0b4fbf;font-size:20px;font-weight:600}.mt{color:#888}.lb{display:block;margin:18px 0 6px;font-weight:500}
+.gal .big{width:100%}.stk img{width:100%;display:block;margin-bottom:12px}h1{font-size:24px;line-height:1.5;font-weight:500;margin:0 0 14px}.pr{color:#0b4fbf;font-size:20px;font-weight:600}.mt{color:#888}.lb{display:block;margin:18px 0 6px;font-weight:500}
 .opt{background:#f0f0f0;border-radius:6px;padding:14px 16px;margin-bottom:8px}.opt b{color:#0b4fbf}.b1,.b2{display:block;width:100%;padding:15px;border-radius:4px;font-size:15px;margin-top:10px}
 .b1{background:#fff;border:1px solid #0b4fbf;color:#0b4fbf}.b2{background:#0b4fbf;border:1px solid #0b4fbf;color:#fff}.ft{background:#f5f5f5;text-align:center;padding:28px;font-size:12px;color:#666;margin-top:32px}
 @media(max-width:768px){
@@ -111,7 +111,7 @@ body{color:#32373c}.ann{background:#ececec;display:flex;justify-content:space-be
 h1{font-size:22px;line-height:1.6}}`, `
 <div class="mob"><img src="../logos/official-menu-sp.jpg" alt="" style="width:100%"></div>
 <div class="pc"><div class="ann"><span>‹</span><span>新規会員登録で500円分プレゼント！</span><span>›</span></div><div class="hd">${logo('airfric.png', 'height:34px;width:auto')}<div class="nv"><span>ホーム</span><span>商品一覧</span><span>衛生シート</span><span>synapusyuコレクション</span><span>サポート</span></div><span>🛒</span></div></div>
-<div class="cols"><div>${gallery(p)}</div><div><h1>${esc(p.name.replace(/ SN-OM01$/, ''))}</h1>
+<div class="cols"><div><div class="pc stk">${p.images.map(s => `<img src="${esc(s)}" alt="">`).join('')}</div><div class="mob">${gallery(p)}</div></div><div style="align-self:start"><h1>${esc(p.name.replace(/ SN-OM01$/, ''))}</h1>
 <div class="mt">価格</div><div class="pr">￥${yen(p.price)}${p.variants.length > 1 ? ' より' : ''}</div><div style="font-size:11px">消費税込み</div>
 <div class="lb" style="color:#888">内容量</div><div style="color:#888;font-size:13px">${esc(p.specs['内容量'])}</div>${selects(p)}
 <label class="lb">料金オプション</label><div class="opt"><b>1回限りの購入</b><br><b>￥${yen(p.price)}</b></div>${(p.subscription || []).map(s => `<div class="opt"><b>${esc(s.label)}</b> ${esc(s.off)}<br><b>￥${yen(s.price)}</b></div>`).join('')}
