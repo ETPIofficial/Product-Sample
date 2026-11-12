@@ -6,13 +6,15 @@ const price = (p, k) => p.prices?.[k] ?? p.price;
 const imgs = p => p.images.map(esc);
 const bullets = p => `<ul>${p.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>`;
 const specTable = p => `<table class="spec">${Object.entries(p.specs || {}).map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>`;
-const gallery = p => `<div class="gal"><img class="big" src="${imgs(p)[0]}" alt=""><div class="th">${imgs(p).map(s => `<img src="${s}" alt="">`).join('')}</div></div>`;
+const gallery = p => `<div class="gal"><img class="big" src="${imgs(p)[0]}" alt=""><div class="th">${imgs(p).map(s => `<img src="${s}" alt="" onclick="this.closest('.gal').querySelector('.big').src=this.src">`).join('')}</div></div>`;
+const descImgs = p => `<div class="di">${imgs(p).map(s => `<img src="${s}" alt="">`).join('')}</div>`;
+const R = (p, s) => p.reviews ? s : '';
 const variants = p => p.variants.map(v => `<div class="var"><span>${esc(v.label)}</span><b>${yen(v.price)}円</b></div>`).join('');
 const selects = p => Object.entries(p.options).map(([k, v]) => `<label class="lb">${esc(k)}</label><select><option>選択</option>${v.map(o => `<option>${esc(o)}</option>`).join('')}</select>`).join('');
 
-const base = `*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;color:#222;font-size:14px}
+const base = `*{box-sizing:border-box}body{margin:0;background:#fff;font-family:-apple-system,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;color:#222;font-size:14px}
 img{max-width:100%;display:block}ul{padding-left:18px}.spec{border-collapse:collapse;width:100%}.spec th,.spec td{border:1px solid #ddd;padding:10px;text-align:left;font-size:13px;vertical-align:top}.spec th{background:#f6f6f6;width:22%}
-.th{display:flex;gap:6px}.th img{width:56px;height:56px;object-fit:cover;border:1px solid #ddd}button,select{font:inherit}select{width:100%;padding:12px;border:1px solid #888;border-radius:4px;background:#fff}
+.th{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.th img{width:56px;height:56px;object-fit:cover;border:1px solid #ddd;cursor:pointer}.di{max-width:800px;margin:16px auto}.di img{width:100%}button,select{font:inherit}select{width:100%;padding:12px;border:1px solid #888;border-radius:4px;background:#fff}
 a{color:inherit;text-decoration:none}.wrap{max-width:1200px;margin:0 auto;padding:16px}.mob{display:none}
 @media(max-width:768px){.wrap{padding:10px}.pc{display:none!important}.mob{display:block}}`;
 const page = (p, css, body) => `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(p.name)}</title><style>${base}${css}</style></head><body>${body}</body></html>`;
@@ -33,10 +35,10 @@ h1{font-size:18px;line-height:1.5;margin:0 0 10px}.pr{font-size:30px;font-weight
 <div class="hd"><span class="logo">Rakuten</span><div class="sr"><span>キーワードから探す</span><i></i></div><div class="nav"><span>買い物かご</span><span>お知らせ</span><span>閲覧履歴</span><span>お気に入り</span><span>購入履歴</span></div></div>
 <div class="bar">${esc(p.shop)} ＞ カテゴリトップ</div><div class="sh">${esc(p.brand)}</div>
 <div class="wrap"><div class="cols"><div>${gallery(p)}</div><div>
-<h1>${esc(p.name)}</h1><div class="rt">${stars(p.rating)} <span style="color:#222">${p.rating}（${p.reviews}件）</span></div><div style="color:#666;font-size:12px;margin:6px 0">商品番号：${esc(p.code)}</div>
+<h1>${esc(p.name)}</h1>${R(p, `<div class="rt">${stars(p.rating)} <span style="color:#222">${p.rating}（${p.reviews}件）</span></div>`)}<div style="color:#666;font-size:12px;margin:6px 0">商品番号：${esc(p.code)}</div>
 <div class="pr">${yen(p.price)}<small>円〜</small></div><div class="pt">${Math.floor(p.price * .01)}ポイント 1倍</div>${bullets(p)}<b>商品詳細を選択</b><div style="margin-top:8px">${variants(p)}</div></div>
 <div class="box pc"><div class="pr">${yen(p.price)}<small>円〜</small></div><button class="b1">かごに追加</button><button class="b2">購入手続きへ</button><div class="fav">☆ お気に入りに追加</div></div></div>
-<h2>商品情報</h2>${specTable(p)}<h2>商品説明</h2><p>${esc(p.description)}</p></div>
+<h2>商品情報</h2>${specTable(p)}<h2>商品説明</h2><p>${esc(p.description)}</p>${descImgs(p)}</div>
 <div class="fx"><button class="b1">かごに追加</button><button class="b2">購入手続きへ</button></div>`) },
 
   yahoo: { label: 'Yahoo!ショッピング', devices: ['desktop', 'mobile'], render: p => page(p, `
@@ -50,11 +52,12 @@ body{background:#f2f2f2}.hd{background:#fff;display:flex;align-items:center;gap:
 @media(max-width:768px){.cols,.main{grid-template-columns:1fr}.hd{padding:10px 12px}.sr{padding:9px 14px}.bc,.st{padding-left:12px;padding-right:12px}.cols{padding:0 8px}.card{padding:14px}}`, `
 <div class="hd"><span class="logo">YAHOO! <small>ショッピング</small></span><div class="sr">何をお探しですか？</div></div>
 <div class="cp">【初回限定】最大半額アプリクーポン配布中！</div><div class="bc">${esc(p.shop)} ＞ ${esc(p.category[0])}</div>
-<div class="st"><b>${esc(p.shop)}</b><span class="star">${stars(p.rating)}</span><b>${p.rating}</b></div>
-<div class="cols"><div><div class="card"><div class="main"><div>${gallery(p)}</div><div><h1>${esc(p.name)}</h1><div style="color:#666;font-size:13px">★ ${p.reviews}件のレビュー</div>
+<div class="st"><b>${esc(p.shop)}</b>${R(p, `<span class="star">${stars(p.rating)}</span><b>${p.rating}</b>`)}</div>
+<div class="cols"><div><div class="card"><div class="main"><div>${gallery(p)}</div><div><h1>${esc(p.name)}</h1>${R(p, `<div style="color:#666;font-size:13px">★ ${p.reviews}件のレビュー</div>`)}
 <div style="margin-top:12px;font-weight:700">価格</div><div class="pr">${yen(price(p, 'yahoo'))}<small>円</small> <small style="color:#555;font-weight:400">送料無料（東京都）</small></div>
 <div class="cpn"><div style="font-size:12px">お買い物が初めての方へ アプリ限定</div><b>50%OFFクーポン</b></div><b>バリエーション</b>
-<div style="margin-top:6px">サイズ：${esc(p.options['サイズ'][0])}</div>${variants(p)}</div></div></div>
+${variants(p)}</div></div></div>
+<div class="card" style="margin-top:16px">${descImgs(p)}</div>
 <div class="card" style="margin-top:16px"><b>商品情報</b>${specTable(p)}</div></div>
 <div class="card pc" style="align-self:start"><div style="font-weight:700">価格</div><div class="pr">${yen(price(p, 'yahoo'))}<small>円</small></div><div style="font-size:13px;margin:8px 0">送料無料（東京都）<br>4%獲得（${Math.floor(price(p, 'yahoo') * .036)}pt）</div><button class="cart">カートに入れる</button><button class="gift">ギフトで贈る</button></div></div>
 <div class="mob" style="position:sticky;bottom:0;background:#fff;padding:10px"><button class="cart" style="margin:0">カートに入れる</button></div>`) },
@@ -70,12 +73,12 @@ body{background:#f2f2f2}.hd{background:#fff;display:flex;align-items:center;gap:
 <div class="hd"><span class="logo">amazon<small>.co.jp</small></span><div class="sr">Amazon.co.jp で検索</div><span class="pc">カート</span></div>
 <div class="sub"><span>すべて</span><span>ランキング</span><span>ベビー</span><span>ヘルス</span></div>
 <div class="wrap"><div class="bc">${p.category.map(esc).join(' › ')}</div><div class="cols"><div>${gallery(p)}</div><div>
-<h1>${esc(p.name)}</h1><div class="lk">${esc(p.brand)} のストアを表示</div><div class="rt">${p.rating} ${stars(p.rating)} <span style="color:#007185">(${p.reviews})</span></div><hr>
-<span class="off">-${Math.round((1 - price(p, 'amazon') / 5980) * 100)}%</span> <span class="pr"><sup>￥</sup>${yen(price(p, 'amazon'))}</span><div class="prime">✓prime 無料配送</div><hr>
+<h1>${esc(p.name)}</h1><div class="lk">${esc(p.brand)} のストアを表示</div>${R(p, `<div class="rt">${p.rating} ${stars(p.rating)} <span style="color:#007185">(${p.reviews})</span></div>`)}<hr>
+${p.listPrice ? `<span class="off">-${Math.round((1 - price(p, 'amazon') / p.listPrice) * 100)}%</span> ` : ''}<span class="pr"><sup>￥</sup>${yen(price(p, 'amazon'))}</span><div class="prime">✓prime 無料配送</div><hr>
 <b>この商品について</b>${bullets(p)}</div>
 <div class="buy"><div class="pr"><sup>￥</sup>${yen(price(p, 'amazon'))}</div><div style="font-size:13px;margin:8px 0">無料配送 <b>土曜日</b><br>お届け先: 東京</div><div class="stock">在庫あり</div>
 <select><option>数量: 1</option></select><button class="b1">カートに入れる</button><button class="b2">今すぐ買う</button></div></div>
-<h2 style="font-weight:400">商品の情報</h2>${specTable(p)}</div>`) },
+<h2 style="font-weight:400">商品の説明</h2>${descImgs(p)}<h2 style="font-weight:400">商品の情報</h2>${specTable(p)}</div>`) },
 
   tiktok: { label: 'TikTok Shop', devices: ['mobile'], render: p => page(p, `
 body{background:#000;color:#fff;max-width:480px;margin:0 auto;padding-bottom:76px}.top{display:flex;justify-content:space-between;padding:12px 14px;position:absolute;width:100%;max-width:480px;z-index:2;font-size:20px}
@@ -86,8 +89,8 @@ h1{font-size:15px;line-height:1.5;margin:8px 0}.mt{color:#aaa;font-size:12px}.se
 .spec th{background:#1a1a1a;color:#ddd;border-color:#333}.spec td{border-color:#333}.var{display:flex;justify-content:space-between;border:1px solid #333;padding:10px;border-radius:6px;margin-bottom:6px}`, `
 <div class="top"><span>‹</span><span>⋯</span></div><div style="background:#111">${gallery(p)}</div><div class="pad">
 <div class="pr"><small>¥</small>${yen(p.price)}<small>〜</small> <span class="tag">送料無料</span></div><h1>${esc(p.name)}</h1>
-<div class="mt">${stars(p.rating)} ${p.rating} · ${p.reviews}件のレビュー · ${esc(p.shop)}</div>
-<div class="sel"><span>サイズ・パック数を選択</span><span>›</span></div>${variants(p)}${bullets(p)}<h3>商品詳細</h3>${specTable(p)}<p style="color:#ccc">${esc(p.description)}</p></div>
+<div class="mt">${R(p, `${stars(p.rating)} ${p.rating} · ${p.reviews}件のレビュー · `)}${esc(p.shop)}</div>
+<div class="sel"><span>サイズ・パック数を選択</span><span>›</span></div>${variants(p)}${bullets(p)}<h3>商品詳細</h3>${specTable(p)}<p style="color:#ccc">${esc(p.description)}</p>${descImgs(p)}</div>
 <div class="bar"><span>🏪<br>ストア</span><span>💬<br>相談</span><button class="c">カートに追加</button><button class="n">今すぐ購入</button></div>`) },
 
   official: { label: '公式ショップ', devices: ['desktop', 'mobile'], render: p => page(p, `
@@ -99,9 +102,9 @@ body{color:#32373c}.ann{background:#ececec;text-align:center;padding:10px;font-s
 @media(max-width:768px){.cols{grid-template-columns:1fr;gap:16px;padding:12px}.hd{padding:12px}.nv{display:none}h1{font-size:18px}}`, `
 <div class="ann">新規会員登録で500円分プレゼント！</div><div class="hd"><span class="logo">${esc(p.brand)}</span><div class="nv"><span>ホーム</span><span>商品一覧</span><span>衛生シート</span><span>synapusyuコレクション</span><span>サポート</span></div><span>🛒</span></div>
 <div class="cols"><div>${gallery(p)}</div><div><h1>${esc(p.name.replace(/ SN-OM01$/, ''))}</h1>
-<div class="mt">価格</div><div class="pr">￥${yen(p.subscription[0].price)} より</div><div style="font-size:11px">消費税込み</div>
+<div class="mt">価格</div><div class="pr">￥${yen(p.price)}${p.variants.length > 1 ? ' より' : ''}</div><div style="font-size:11px">消費税込み</div>
 <div class="lb" style="color:#888">内容量</div><div style="color:#888;font-size:13px">${esc(p.specs['内容量'])}</div>${selects(p)}
-<label class="lb">料金オプション</label><div class="opt"><b>1回限りの購入</b><br><b>￥${yen(p.price)}</b></div>${p.subscription.map(s => `<div class="opt"><b>${esc(s.label)}</b> ${esc(s.off)}<br><b>￥${yen(s.price)}</b></div>`).join('')}
-<button class="b1">カートに追加する</button><button class="b2">定期購入する</button>
-<h3 style="margin-top:28px">商品概要</h3>${specTable(p)}</div></div><div class="ft">2026 © ${esc(p.brand)}</div>`) },
+<label class="lb">料金オプション</label><div class="opt"><b>1回限りの購入</b><br><b>￥${yen(p.price)}</b></div>${(p.subscription || []).map(s => `<div class="opt"><b>${esc(s.label)}</b> ${esc(s.off)}<br><b>￥${yen(s.price)}</b></div>`).join('')}
+<button class="b1">カートに追加する</button><button class="b2">${p.subscription ? '定期購入する' : '今すぐ購入'}</button>
+<h3 style="margin-top:28px">商品概要</h3>${specTable(p)}</div></div>${descImgs(p)}<div class="ft">2026 © ${esc(p.brand)}</div>`) },
 };
