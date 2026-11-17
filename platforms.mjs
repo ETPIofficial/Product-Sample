@@ -30,8 +30,8 @@ h1{font-size:18px;line-height:1.5;margin:0 0 10px}.pr{font-size:30px;font-weight
 .var{display:flex;justify-content:space-between;border:1px solid #ccc;padding:11px 14px;margin-bottom:6px;border-radius:3px}
 .box{border:1px solid #ddd;padding:16px;border-radius:4px;align-self:start}.b1,.b2{display:block;width:100%;padding:14px;border-radius:3px;font-weight:700;font-size:15px;margin-top:8px}
 .b1{background:#fff;border:2px solid #bf0000;color:#bf0000}.b2{background:#bf0000;border:2px solid #bf0000;color:#fff}.fav{margin-top:8px;text-align:center;border:1px solid #ccc;padding:10px;border-radius:3px}
-.fx{display:none}.lr{display:flex;gap:24px;align-items:flex-start}.lr .side{flex:0 0 313px}.lr .di{flex:1;min-width:0;margin:0 auto}h2{background:#f3f3f3;padding:10px 14px;font-size:16px;margin:28px 0 12px}
-@media(max-width:768px){.cols{grid-template-columns:1fr;gap:12px}.hd{padding:8px 12px}.nav,.sr{display:none}.logo{font-size:22px}.sh{font-size:22px;padding:12px}
+.fx{display:none}.lr{display:flex;gap:24px;align-items:flex-start;margin-bottom:48px}.lr .side{flex:0 0 313px}.lr .di{flex:1;min-width:0;margin:0 auto}h2{background:#f3f3f3;padding:10px 14px;font-size:16px;margin:28px 0 12px}
+@media(max-width:768px){.lr{margin-bottom:32px}.cols{grid-template-columns:1fr;gap:12px}.hd{padding:8px 12px}.nav,.sr{display:none}.logo{font-size:22px}.sh{font-size:22px;padding:12px}
 .fx{display:flex;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;padding:8px;gap:8px;z-index:9}.fx button{flex:1;padding:13px;font-weight:700;border-radius:3px}body{padding-bottom:70px}}`, `
 <div class="hd">${logo('rakuten.webp', 'height:26px;width:auto')}<div class="sr"><span>キーワードから探す</span><i></i></div><div class="nav"><span>買い物かご</span><span>お知らせ</span><span>閲覧履歴</span><span>お気に入り</span><span>購入履歴</span></div></div>
 <div class="pc" style="max-width:1020px;margin:0 auto"><img src="../logos/rakuten-shop.webp" alt="" style="width:100%"></div>
@@ -72,7 +72,7 @@ ${variants(p)}</div></div></div>
 .gal .th{flex-direction:column}h1{font-size:22px;font-weight:400;line-height:1.4;margin:0}.lk{color:#007185;font-size:13px;margin:6px 0}.rt{color:#de7921}hr{border:0;border-top:1px solid #ddd;margin:12px 0}
 .pr{font-size:28px}.pr sup{font-size:14px}.off{color:#cc0c39;font-size:26px}.prime{color:#00a8e1;font-weight:700;font-size:13px}.buy{border:1px solid #ddd;border-radius:8px;padding:16px;align-self:start}
 .stock{color:#007600;font-size:18px;margin:10px 0}.b1,.b2{display:block;width:100%;border:0;padding:11px;border-radius:20px;font-size:14px;margin-top:10px}.b1{background:#ffd814}.b2{background:#ffa41c}
-@media(max-width:768px){.cols{grid-template-columns:1fr;gap:12px}.gal{flex-direction:column}.gal .th{flex-direction:row}.hd{padding:8px 12px}h1{font-size:17px}.sub{overflow:hidden;white-space:nowrap}}`, `
+@media(max-width:768px){.lr{margin-bottom:32px}.cols{grid-template-columns:1fr;gap:12px}.gal{flex-direction:column}.gal .th{flex-direction:row}.hd{padding:8px 12px}h1{font-size:17px}.sub{overflow:hidden;white-space:nowrap}}`, `
 <div class="hd">${logo('amazon.png', 'width:120px;height:36px;object-fit:cover;filter:invert(1) hue-rotate(180deg)')}<div class="sr">Amazon.co.jp で検索</div><span class="pc">カート</span></div>
 <div class="sub"><span>すべて</span><span>ランキング</span><span>ベビー</span><span>ヘルス</span></div>
 <div class="wrap"><div class="bc">${p.category.map(esc).join(' › ')}</div><div class="cols"><div>${gallery(p, 'amazon')}</div><div>
