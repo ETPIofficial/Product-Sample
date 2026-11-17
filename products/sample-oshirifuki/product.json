@@ -4,16 +4,48 @@
   "brand": "AIRFRIC",
   "shop": "AIRFRIC",
   "code": "SAMPLE-TC",
-  "category": ["ホーム＆キッチン", "収納用品", "ティッシュケース"],
+  "category": [
+    "ホーム＆キッチン",
+    "収納用品",
+    "ティッシュケース"
+  ],
   "price": 1680,
   "listPrice": null,
   "rating": 0,
   "reviews": 0,
-  "images": ["img01.jpg", "img02.jpg", "img03.jpg", "img04.jpg", "img05.jpg", "img06.jpg", "img07.jpg", "img08.jpg", "img09.jpg", "img10.jpg", "img11.jpg", "img12.jpg"],
-  "descImages": ["img01.jpg", "img02.jpg", "img03.jpg", "img04.jpg", "img05.jpg", "img13.jpg", "img07.jpg", "img08.jpg", "img09.jpg", "img10.jpg", "img11.jpg", "img12.jpg", "img14.jpg"],
+  "images": [
+    "img01.jpg",
+    "img02.jpg",
+    "img03.jpg",
+    "img04.jpg",
+    "img05.jpg",
+    "img06.jpg"
+  ],
+  "descImages": [
+    "img01.jpg",
+    "img02.jpg",
+    "img03.jpg",
+    "img04.jpg",
+    "img05.jpg",
+    "img06.jpg"
+  ],
   "platformImages": {
-    "tiktok": ["img01.jpg", "img03.jpg", "img05.jpg", "img06.jpg", "img07.jpg", "img08.jpg", "img09.jpg", "img10.jpg", "img11.jpg"],
-    "amazon": ["img15.jpg", "img01.jpg", "img03.jpg", "img05.jpg", "img06.jpg", "img07.jpg", "img08.jpg", "img09.jpg", "img11.jpg"]
+    "tiktok": [
+      "img01.jpg",
+      "img02.jpg",
+      "img03.jpg",
+      "img04.jpg",
+      "img05.jpg",
+      "img06.jpg"
+    ],
+    "amazon": [
+      "img01.jpg",
+      "img02.jpg",
+      "img03.jpg",
+      "img04.jpg",
+      "img05.jpg",
+      "img06.jpg"
+    ]
   },
   "tagline": "溶けた氷のようななめらか曲線で、毎日を使いやすく。",
   "bullets": [
@@ -23,10 +55,25 @@
     "引っかからず破れにくい／蓋を開けて入れるだけの詰め替えかんたん設計"
   ],
   "description": "スマートティッシュ・Kinugokochi（ハーフサイズ）に対応したティッシュケース。カラーはコーヒーとマットクリアの全2色。単品（ケースのみ）と、スマートティッシュ1袋（6個入り）付きのお得なスマートセットから選べます。",
-  "options": { "カラー": ["コーヒー", "マットクリア"], "セット内容": ["単品（ケースのみ）", "スマートセット（ティッシュ付き）"] },
+  "options": {
+    "カラー": [
+      "コーヒー",
+      "マットクリア"
+    ],
+    "セット内容": [
+      "単品（ケースのみ）",
+      "スマートセット（ティッシュ付き）"
+    ]
+  },
   "variants": [
-    { "label": "単品（ケースのみ）", "price": 1680 },
-    { "label": "おトク！スマートセット（ケース＋スマートティッシュ1袋6個入り）", "price": 1980 }
+    {
+      "label": "単品（ケースのみ）",
+      "price": 1680
+    },
+    {
+      "label": "おトク！スマートセット（ケース＋スマートティッシュ1袋6個入り）",
+      "price": 1980
+    }
   ],
   "specs": {
     "ブランド": "AIRFRIC",
